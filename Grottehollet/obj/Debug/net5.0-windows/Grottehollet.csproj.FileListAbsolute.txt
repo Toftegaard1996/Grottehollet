@@ -20,3 +20,5 @@ C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Gr
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\ref\Grottehollet.dll
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.pdb
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.genruntimeconfig.cache
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Stylesheet\Styles.baml
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\App.baml

@@ -34,5 +34,14 @@ namespace Grottehollet
             CodeLoginBox.Text = null;
         }
 
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Grottehollet.SelectedIndex = 1;
+        }
+
+        private void ReturnToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Grottehollet.SelectedIndex = 0;
+        }
     }
 }

@@ -1,4 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    xmlns:tileView="clrnamespace:Telerik.Windows.Controls.TileView;assembly=Telerik.Windows.Controls.Navigation"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <Style TargetType="{x:Type TextBox}" x:Key="BorderRadi">
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="3"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style TargetType="{x:Type Button}" x:Key="BorderButtonRadi">
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="3"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
 </ResourceDictionary>
