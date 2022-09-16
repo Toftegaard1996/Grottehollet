@@ -22,3 +22,10 @@ C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Gr
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.genruntimeconfig.cache
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Stylesheet\Styles.baml
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\App.baml
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\System.Data.SqlClient.dll
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.csproj.CopyComplete

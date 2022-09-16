@@ -30,7 +30,7 @@
                                 </TextBox>
                                 <TextBox x:Name="CodeLoginBox" Text="Code" Height="32" Width="180" Margin="0,25,0,40" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
                                 </TextBox>
-                                <Button x:Name="LoginButton" Width="180" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Log in" Cursor="Hand" Background="#7f5539" Foreground="#ede0d4" FontFamily="Algerian" FontSize="16" FontWeight="Bold" BorderBrush="Black">
+                                <Button x:Name="LoginButton" Click="LoginButton_Click" Width="180" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Log in" Cursor="Hand" Background="#7f5539" Foreground="#ede0d4" FontFamily="Algerian" FontSize="16" FontWeight="Bold" BorderBrush="Black">
                                 </Button>
                                 <Button x:Name="RegisterButton" Click="RegisterButton_Click" Width="58" Height="30" Margin="0,10,120,0" Foreground="#006CE5" BorderThickness="0,0,0,0" Cursor="Hand" Background="{x:Null}">
                                     <TextBlock TextDecorations="Underline" >Registre</TextBlock>
@@ -58,22 +58,219 @@
                         <Image Source="/Samurai-Warriors-5_2021_05-27-21_002-320x353.png"/>
                         <Border Width="830" Height="422" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1">
                             <StackPanel>
-                                <Label Width="92" Height="38" Content="Log in" FontSize="26" FontWeight="Bold" FontFamily="Algerian" Margin="0,75,0,50"></Label>
-                                <TextBox x:Name="NameRegisterBox" Text="Name" Height="32" Width="180" BorderBrush="Black" GotFocus="NameLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
+                                <Label Width="110" Height="38" Content="Sign up" FontSize="26" FontWeight="Bold" FontFamily="Algerian" Margin="0,75,0,50"></Label>
+                                <TextBox x:Name="NameRegisterBox" Text="Name" Height="32" Width="180" BorderBrush="Black" GotFocus="NameRegisterBox_GotFocus" Style="{StaticResource BorderRadi}">
                                 </TextBox>
-                                <TextBox x:Name="AdressRegisterBox" Text="City" Height="32" Width="180" Margin="0,15,0,0" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
+                                <TextBox x:Name="AdressRegisterBox" Text="Adress" Height="32" Width="180" Margin="0,15,0,0" BorderBrush="Black" GotFocus="AdressRegisterBox_GotFocus" Style="{StaticResource BorderRadi}">
                                 </TextBox>
-                                <TextBox x:Name="CityRegisterBox" Text="City" Height="32" Width="180" Margin="0,15,0,40" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
+                                <TextBox x:Name="CityRegisterBox" Text="City" Height="32" Width="180" Margin="0,15,0,40" BorderBrush="Black" GotFocus="CityRegisterBox_GotFocus" Style="{StaticResource BorderRadi}">
                                 </TextBox>
-                                <Button x:Name="RegisterConfirmButton" Width="180" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Log in" Cursor="Hand" Background="#7f5539" Foreground="#ede0d4" FontFamily="Algerian" FontSize="16" FontWeight="Bold" BorderBrush="Black">
+                                <Button x:Name="RegisterConfirmButton" Click="RegisterConfirmButton_Click" Width="180" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Sign up" Cursor="Hand" Background="#7f5539" Foreground="#ede0d4" FontFamily="Algerian" FontSize="16" FontWeight="Bold" BorderBrush="Black">
                                 </Button>
                                 <Button x:Name="ReturnToLogin" Click="ReturnToLogin_Click" Width="58" Height="30" Margin="0,10,120,0" Foreground="#006CE5" BorderThickness="0,0,0,0" Cursor="Hand">
-                                    <TextBlock TextDecorations="Underline" >Registre</TextBlock>
+                                    <TextBlock TextDecorations="Underline" >Login</TextBlock>
                                 </Button>
                             </StackPanel>
                         </Border>
                         <Image Height="788" Grid.Column="2" VerticalAlignment="Bottom" Source="/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" ></Image>
                     </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Home" Visibility="Collapsed">
+                <Grid Background="#DDB892">
+                    <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="top" Height="75"  Background="#683F25">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Label FontSize="36" Content="Grottehollet" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#ede0d4" FontFamily="Algerian"/>
+                    </Border>
+                    <Grid VerticalAlignment="Bottom" Height="989">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Style="{StaticResource BorderBigButtonRadi}" Name="MakeRequestButton" Click="MakeRequestButton_Click"  Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image Source="/listview.png" Height="220"></Image>
+                                <Label Content="Make request" HorizontalAlignment="Center" FontSize="24"></Label>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource BorderBigButtonRadi}" Name="ProfileButton" Click="ProfileButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="/Profile.png" Height="220"></Image>
+                                <Label Content="Profile" HorizontalAlignment="Center" FontSize="24"></Label>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource BorderBigButtonRadi}" Name="ViewStockButton" Click="ViewStockButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="/Indbox.png" Height="220"></Image>
+                                <Label Content="View stock" HorizontalAlignment="Center" FontSize="24"></Label>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource BorderBigButtonRadi}" Name="LogoutButton" Click="LogoutButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="/Exit.png" Height="220"></Image>
+                                <Label Content="Log out" HorizontalAlignment="Center" FontSize="24"></Label>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="MakeRequest" Visibility="Collapsed">
+                <Grid Background="#DDB892">
+                    <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="top" Height="75"  Background="#683F25">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Label FontSize="36" Content="Grottehollet" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#ede0d4" FontFamily="Algerian"/>
+                    </Border>
+                    <Border Background="#3FFFFFFF" Height="61" VerticalAlignment="Top" Margin="0,75,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Content="Home"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Content="Profile"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Content="View stock"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request"></Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Profile" Visibility="Collapsed">
+                <Grid Background="#DDB892">
+                    <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="top" Height="75"  Background="#683F25">
+                        <Label FontSize="36" Content="Grottehollet" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#ede0d4" FontFamily="Algerian"/>
+                    </Border>
+                    <Border Background="#3FFFFFFF" Height="61" VerticalAlignment="Top" Margin="0,75,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Background="{x:Null}" Name="HomeButton"  Click="HomeButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Content="Home"></Button>
+                            <Button Background="{x:Null}" Click="ProfileButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Content="Profile"></Button>
+                            <Button Background="{x:Null}" Click="ViewStockButton_Click"  BorderThickness="0" Height="61" Width="150" Grid.Column="2" Content="View stock"></Button>
+                            <Button Background="{x:Null}" Click="MakeRequestButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request"></Button>
+                        </Grid>
+                    </Border>
+                    <Grid VerticalAlignment="Bottom" Height="925">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="495"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="495"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Welcome NAME" FontSize="24" FontWeight="Bold" Margin="15,50,0,0" Grid.Column="0"></Label>
+                        <Image Source="/Samurai-Warriors-5_2021_05-27-21_002-320x353.png" Opacity="0.5"></Image>
+                        <Image Source="/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" Grid.Column="2" Height="768" VerticalAlignment="Bottom" Opacity="0.5"></Image>
+                        <Label Width="150" Height="38" Content="Your info" FontSize="24" FontWeight="Bold" Margin="100,50,0,50" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"></Label>
+                        <Button Grid.Column="1" VerticalAlignment="Top" Margin="600,55,0,50" FontFamily="Algerian" Width="120" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Save" Cursor="Hand" Background="#BFFFFFFF" Foreground="Black" FontSize="16" BorderBrush="Black">
+                        </Button>
+                        <Border Width="710" Height="306" VerticalAlignment="Top" CornerRadius="5" Margin="0,100,0,0" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="7" ShadowDepth="2" Color="Black" Direction="275"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <Grid Margin="20,25,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="190"></ColumnDefinition>
+                                        <ColumnDefinition Width="220"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Name:"></Label>
+                                    <TextBox  Name="ProfileName"  Text="Your name" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="NameLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
+                                    </TextBox>
+                                    <Label Content="Code:" Grid.Row="1"></Label>
+                                    <Label Content="gg420360" FontSize="14" Height="32" Width="180" BorderBrush="Black" Grid.Row="1" Grid.Column="1"></Label>
+                                    <Button x:Name="HideCode" Grid.Column="1" Grid.Row="1" Height="23" Width="23" HorizontalAlignment="Right" Click="HideCode_Click" >
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Show.png"/>
+                                        </Button.Background>
+                                    </Button>
+                                    <Button x:Name="ShowCode" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Right" Visibility="Collapsed" Click="ShowCode_Click">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Hide.png"/>
+                                        </Button.Background>
+                                    </Button>
+                                    <Label Content="Nickname" Grid.Row="2"></Label>
+                                    <TextBox Name="ProfileNickname" Text="Your nickname" Grid.Row="2" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
+                                    </TextBox>
+                                    <Label Content="Emergency contact" Grid.Row="3" ></Label>
+                                    <TextBox Text="Name" Grid.Row="3" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Text="Tlf" Grid.Row="3" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <Label Content="Adress" Grid.Row="4" ></Label>
+                                    <TextBox Text="Adress" Grid.Row="4" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Text="City" Grid.Row="4" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Currently borrowed" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,410" Grid.Column="0"></Label>
+                            <Label Content="Created requests" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,410" Grid.Column="1"></Label>
+                            <Border Width="400" Height="372" VerticalAlignment="Bottom" Background="#ede0d4" Margin="0,0,0,25" BorderThickness="1" BorderBrush="Black" Grid.Column="0" CornerRadius="5">
+                                <ListView Width="360" Margin="0,10,0,10" Background="#7f5539" ItemsSource="{Binding}">
+                                      
+                                </ListView>
+                            </Border>
+                            <Border Width="400" Height="372" VerticalAlignment="Bottom" Background="#ede0d4" Margin="0,0,0,25" BorderThickness="1" BorderBrush="Black" Grid.Column="1" CornerRadius="5"></Border>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ViewStock" Visibility="Collapsed">
+                <Grid Background="#DDB892">
+                    <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="top" Height="75"  Background="#683F25">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Label FontSize="36" Content="Grottehollet" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#ede0d4" FontFamily="Algerian"/>
+                    </Border>
+                    <Border Background="#3FFFFFFF" Height="61" VerticalAlignment="Top" Margin="0,75,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Content="Home"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Content="Profile"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Content="View stock"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request"></Button>
+                        </Grid>
+                    </Border>
                 </Grid>
             </TabItem>
         </TabControl>

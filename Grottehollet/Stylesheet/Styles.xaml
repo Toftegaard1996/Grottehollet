@@ -17,5 +17,12 @@
             </Style>
         </Style.Resources>
     </Style>
+    <Style TargetType="{x:Type Button}" x:Key="BorderBigButtonRadi">
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </Style.Resources>
+    </Style>
 
 </ResourceDictionary>
