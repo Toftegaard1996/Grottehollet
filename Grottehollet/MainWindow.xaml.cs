@@ -24,11 +24,13 @@ namespace Grottehollet
     {
         DBConnection DB = new DBConnection();
         Member member;
+        int ButtonPressed = 0;
         
         public MainWindow()
         {
             InitializeComponent();
             member = new Member(DB);
+
         }
         private void NameLoginBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -49,8 +51,9 @@ namespace Grottehollet
             
             if (DB.reader.Read())
             {
-                if (CodeLoginBox.Text == DB.reader["Medlemskode"].ToString())
+                if (CodeLoginBox.Text == DB.reader["Medlemskode"].ToString() && NameLoginBox.Text == DB.reader["Navn"].ToString())
                 {
+                    member.SeeProfile(CodeLoginBox.Text);
                     Grottehollet.SelectedIndex = 2;
                 }
             }
@@ -99,32 +102,92 @@ namespace Grottehollet
 
         private void MakeRequestButton_Click(object sender, RoutedEventArgs e)
         {
-            Grottehollet.SelectedIndex = 3;
+            Grottehollet.SelectedIndex = 4;
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            Grottehollet.SelectedIndex = 4;
+            Grottehollet.SelectedIndex = 5;
+            PFWelcome.Content = "Welcome " + member.Name;
+            ProfileName.Text = member.Name;
+            if (member.Nickname != "")
+            {
+                ProfileNickname.Text = member.Nickname;
+            }
+            if (member.Adress != "")
+            {
+                AdressAdress.Text = member.Adress;
+            }
+            if (member.City != "")
+            {
+                AdressCity.Text = member.City;
+            }
         }
 
         private void ViewStockButton_Click(object sender, RoutedEventArgs e)
         {
-            Grottehollet.SelectedIndex = 5;
+            Grottehollet.SelectedIndex = 3;
+            StockList.ItemsSource = DB.SeeBoardGameList();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             Grottehollet.SelectedIndex = 0;
+            NameLoginBox.Text = "Your name";
+            CodeLoginBox.Text = "Code";
         }
 
-        private void HideCode_Click(object sender, RoutedEventArgs e)
+        private void HideShowCode_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            if (ButtonPressed == 0)
+            {
+                BitmapImage Image = new BitmapImage(new Uri("pack://application:,,,/Grottehollet;component/Resources/Show.png"));
+                ShowImg.Source = Image;
+                ProfileCode.Content = member.Code;
+                ButtonPressed += 1;
+            }
+            else if (ButtonPressed == 1)
+            {
+                BitmapImage Image = new BitmapImage(new Uri("pack://application:,,,/Grottehollet;component/Resources/Hide.png"));
+                ShowImg.Source = Image;
+                ProfileCode.Content = "********";
+                ButtonPressed = 0;
+            }
+            
+            
+        }
+        private void SaveInfo_Click(object sender, RoutedEventArgs e)
+        {
+            member.UpdateProfile(CodeLoginBox.Text, ProfileNickname.Text, ECName.Text, ECTlf.Text, AdressAdress.Text, AdressCity.Text);
         }
 
-        private void ShowCode_Click(object sender, RoutedEventArgs e)
+        private void MakeBorrowingRequest_Click(object sender, RoutedEventArgs e)
         {
+            string Forborrowing = ((Button)sender).DataContext.ToString();
+            ViewYourRequest.ItemsSource = member.RequestForBorrowing(Forborrowing);
+            
 
+        }
+        private void RemoveFromBorrowingRequest_Click(object sender, RoutedEventArgs e)
+        {
+            BorrowRequest brrrr = ((Button)sender).DataContext as BorrowRequest;
+            member.borrowRequests.Remove(brrrr);
+        }
+
+        private void PlaceRequest_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> RequestBorrowing = new List<string>();
+            if (RequestBorrowing != null)
+            {
+                foreach (var item in ViewYourRequest.Items)
+                {
+                    RequestBorrowing.Add(item.ToString());
+                }
+                member.PlaceRequest(RequestBorrowing);
+                RequestPlacedFeedback.Visibility = Visibility.Visible;
+
+            }
         }
 
         #endregion

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Windows.Data;
+using System.Collections.ObjectModel;
 
 namespace Grottehollet.Class
 {
@@ -19,9 +21,9 @@ namespace Grottehollet.Class
         public string City;
         public string EmergencyContact;
         public string Nickname;
-        private string Code;
+        public string Code;
 
-        public void CreateMember(string name, string adress, string city) 
+        public void CreateMember(string name, string adress, string city)
         {
             Random rnd = new Random();
             StringBuilder stringBuilder = new StringBuilder();
@@ -32,16 +34,17 @@ namespace Grottehollet.Class
                 stringBuilder.Append(c);
             }
             Code = stringBuilder.ToString();
+
             DB.cnn.Open();
-            DB.cmd = new SqlCommand("SELECT * FROM Medlemmer WHERE Medlemskode=@Medlemskode", DB.cnn);
+            DB.cmd = new SqlCommand("SELECT * FROM Medlemmer WHERE Medlemskode=" + Code, DB.cnn);
             DB.cmd.Parameters.AddWithValue("Medlemskode", stringBuilder.ToString());
             DB.reader = DB.cmd.ExecuteReader();
 
             if (DB.reader.Read())
             {
-                while (stringBuilder.ToString() == DB.reader["Medlemskode"].ToString())
+                while (Code == DB.reader["Medlemskode"].ToString())
                 {
-                    
+
                     for (int i = 0; i < 8; i++)
                     {
                         var c = pool[rnd.Next(0, pool.Length)];
@@ -52,19 +55,97 @@ namespace Grottehollet.Class
                     DB.cmd.Parameters.AddWithValue("Medlemskode", Code);
                     DB.reader = DB.cmd.ExecuteReader();
                 }
-                DB.cmd = new SqlCommand("INSERT INTO Medlemmer(Navn, Adresse, City, Medlemskode) VALUES(Navn=@Name, Adresse=@Adress, City=@City, Medlemskode=@Code)", DB.cnn);
-                DB.cmd.Parameters.AddWithValue("Name", name);
-                DB.cmd.Parameters.AddWithValue("Adress", adress);
-                DB.cmd.Parameters.AddWithValue("City", city);
-                DB.cmd.Parameters.AddWithValue("Code", Code);
             }
-            
             DB.cnn.Close();
-            return;
+            DB.cnn.Open();
+
+            DB.cmd = new SqlCommand("CreateMedledmV1", DB.cnn);
+            DB.cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            DB.cmd.Parameters.AddWithValue("@Name", name);
+            DB.cmd.Parameters.AddWithValue("@Adress", adress);
+            DB.cmd.Parameters.AddWithValue("@City", city);
+            DB.cmd.Parameters.AddWithValue("@Nødkontakt", null);
+            DB.cmd.Parameters.AddWithValue("Code", Code);
+            DB.cmd.Parameters.AddWithValue("@Kaldenavn", null);
+
+            DB.cmd.ExecuteNonQuery();
+            DB.cnn.Close();
         }
 
-        public void SeeProfile() { }
+        public void SeeProfile(string membercode)
+        {
+            DB.cnn.Close();
+            DB.cnn.Open();
+            DB.cmd = new SqlCommand("SELECT * FROM Medlemmer WHERE Medlemskode=@Medlemskode", DB.cnn);
+            DB.cmd.Parameters.AddWithValue("Medlemskode", membercode);
+            DB.reader = DB.cmd.ExecuteReader();
 
-        public void UpdateProfile() { }
+            if (DB.reader.Read())
+            {
+                Name = DB.reader["Navn"].ToString();
+                Adress = DB.reader["Adresse"].ToString();
+                City = DB.reader["City"].ToString();
+                EmergencyContact = DB.reader["Nødkontakt"].ToString();
+                Nickname = DB.reader["Kaldenavn"].ToString();
+                Code = membercode;
+            }
+        }
+
+        public void UpdateProfile(string membercode, string PFNickname, string PFemergencyName, string PFemergencyPhone, string PFAdress, string PFCity)
+        {
+            if (PFAdress != "" && PFCity != "")
+            {
+                DB.cnn.Open();
+                DB.cmd = new SqlCommand("UPDATE Medlemmer SET Kaldenavn = @Nickname, Adresse = @Adress, City = @city WHERE Medlemdskode=@Medlemskode", DB.cnn);
+                DB.cmd.Parameters.AddWithValue("Medlemskode", membercode);
+                DB.cmd.Parameters.AddWithValue("Nickname", PFNickname);
+                DB.cmd.Parameters.AddWithValue("Adress", PFAdress);
+                DB.cmd.Parameters.AddWithValue("City", PFCity);
+
+                DB.cmd.ExecuteNonQuery();
+                DB.cnn.Close();
+            }
+        }
+
+        public ObservableCollection<BorrowRequest> borrowRequests = new ObservableCollection<BorrowRequest>();
+        public static object Lockject = new object();
+
+        public ObservableCollection<BorrowRequest> RequestForBorrowing(string forborrowing)
+        {
+            string[] splitted = forborrowing.Split(',');
+            BindingOperations.EnableCollectionSynchronization(borrowRequests, Lockject);
+
+            lock (Lockject)
+            {
+                borrowRequests.Add(new BorrowRequest(splitted[0].ToString(), splitted[1].ToString(), splitted[2].ToString(), Code, false));
+                return borrowRequests;
+            }
+        }
+
+        public void PlaceRequest(List<string> requestborrowing) 
+        {
+            foreach (var item in requestborrowing)
+            {
+                DB.cnn.Open();
+                DB.cmd = new SqlCommand("UPDATE Brætspil SET Udlånes=@udlånes WHERE Navn=@titel", DB.cnn);
+                DB.cmd.Parameters.AddWithValue("@titel", item.ToString());
+                DB.cmd.Parameters.AddWithValue("@udlånes", true);
+                DB.cmd.ExecuteNonQuery();
+                DB.cnn.Close();
+
+            }
+            borrowRequests.Clear();
+        }
+
+        public void Logout() 
+        {
+            Name = null;
+            Adress = null;
+            City = null;
+            EmergencyContact = null;
+            Nickname = null;
+            Code = null;
+        }
     }
 }

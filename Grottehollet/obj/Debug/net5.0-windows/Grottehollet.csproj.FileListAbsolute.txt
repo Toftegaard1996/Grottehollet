@@ -29,3 +29,5 @@ C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\ru
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.csproj.CopyComplete
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.Properties.Resources.resources
+C:\Users\HFGF\source\repos\Grottehollet\Grottehollet\obj\Debug\net5.0-windows\Grottehollet.csproj.GenerateResource.cache

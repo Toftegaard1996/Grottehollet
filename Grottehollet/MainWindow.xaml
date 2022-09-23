@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grottehollet"
         mc:Ignorable="d"
-        Title="Grottehollet" WindowState="Maximized" Height="1080" Width="1920" Icon="/Cave-Clipart-Transparent-Pictures.png">
+        Title="Grottehollet" WindowState="Maximized" Height="1080" Width="1920" Icon="Resources/Cave-Clipart-Transparent-Pictures.png">
     <Grid>
         <TabControl BorderThickness="0,0,0,0" Padding="-2" Name="Grottehollet">
             <TabItem Header="Login" Visibility="Collapsed">
@@ -22,7 +22,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="495"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Samurai-Warriors-5_2021_05-27-21_002-320x353.png"/>
+                        <Image Source="/Resources/Samurai-Warriors-5_2021_05-27-21_002-320x353.png"/>
                         <Border Width="830" Height="422" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1">
                             <StackPanel>
                                 <Label Width="92" Height="38" Content="Log in" FontSize="26" FontWeight="Bold" FontFamily="Algerian" Margin="0,75,0,50"></Label>
@@ -37,7 +37,7 @@
                                 </Button>
                             </StackPanel>
                         </Border>
-                        <Image Height="788" Grid.Column="2" VerticalAlignment="Bottom" Source="/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" ></Image>
+                        <Image Height="788" Grid.Column="2" VerticalAlignment="Bottom" Source="/Resources/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" ></Image>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -55,7 +55,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="495"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Samurai-Warriors-5_2021_05-27-21_002-320x353.png"/>
+                        <Image Source="/Resources/Samurai-Warriors-5_2021_05-27-21_002-320x353.png"/>
                         <Border Width="830" Height="422" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1">
                             <StackPanel>
                                 <Label Width="110" Height="38" Content="Sign up" FontSize="26" FontWeight="Bold" FontFamily="Algerian" Margin="0,75,0,50"></Label>
@@ -72,7 +72,7 @@
                                 </Button>
                             </StackPanel>
                         </Border>
-                        <Image Height="788" Grid.Column="2" VerticalAlignment="Bottom" Source="/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" ></Image>
+                        <Image Height="788" Grid.Column="2" VerticalAlignment="Bottom" Source="/Resources/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" ></Image>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -95,28 +95,91 @@
                         </Grid.RowDefinitions>
                         <Button Style="{StaticResource BorderBigButtonRadi}" Name="MakeRequestButton" Click="MakeRequestButton_Click"  Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Image Source="/listview.png" Height="220"></Image>
+                                <Image Source="/Resources/listview.png" Height="220"></Image>
                                 <Label Content="Make request" HorizontalAlignment="Center" FontSize="24"></Label>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource BorderBigButtonRadi}" Name="ProfileButton" Click="ProfileButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Profile.png" Height="220"></Image>
+                                <Image Source="/Resources/Profile.png" Height="220"></Image>
                                 <Label Content="Profile" HorizontalAlignment="Center" FontSize="24"></Label>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource BorderBigButtonRadi}" Name="ViewStockButton" Click="ViewStockButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Indbox.png" Height="220"></Image>
+                                <Image Source="/Resources/Indbox.png" Height="220"></Image>
                                 <Label Content="View stock" HorizontalAlignment="Center" FontSize="24"></Label>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource BorderBigButtonRadi}" Name="LogoutButton" Click="LogoutButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Exit.png" Height="220"></Image>
+                                <Image Source="/Resources/Exit.png" Height="220"></Image>
                                 <Label Content="Log out" HorizontalAlignment="Center" FontSize="24"></Label>
                             </StackPanel>
                         </Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ViewStock" Visibility="Collapsed">
+                <Grid Background="#DDB892">
+                    <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="top" Height="75"  Background="#683F25">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Label FontSize="36" Content="Grottehollet" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#ede0d4" FontFamily="Algerian"/>
+                    </Border>
+                    <Border Background="#3FFFFFFF" Height="61" VerticalAlignment="Top" Margin="0,75,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="7" ShadowDepth="4" Color="Black" Direction="275"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Click="HomeButton_Click" Content="Home"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Click="ProfileButton_Click"  Content="Profile"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Click="ViewStockButton_Click"  Content="View stock"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request"></Button>
+                        </Grid>
+                    </Border>
+                    <Grid Height="925" VerticalAlignment="Bottom">
+                        <Grid Width="1370" Height="32" VerticalAlignment="Top" Margin="0,60,0,0">
+                            <Button Style="{StaticResource BorderButtonRadi}" Content="Show Books" FontSize="14" Width="120" Height="32" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Button Style="{StaticResource BorderButtonRadi}" Content="Show Games" FontSize="14" Width="120" Height="32" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="125,0,0,0"/>
+                            <Button Style="{StaticResource BorderButtonRadi}" Content="Show all" FontSize="14" Width="120" Height="32" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="250,0,0,0"/>
+                        </Grid>
+                        <Border BorderThickness="1" BorderBrush="Black" Background="#EEDCC9" Width="1370" Height="727" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid Height="700" Width="1340">
+                                <ListView Name="StockList" Background="Transparent" BorderThickness="0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel Width="1307" Focusable="False" Background="White" Height="61">
+                                                <Image Source="{Binding Image}"/>
+                                                <Label Content="{Binding Titel}" VerticalAlignment="Center"/>
+                                                <Label Content="{Binding Tags}" VerticalAlignment="Center"/>
+                                                <Button Name="MakeBorrowingRequest" Click="MakeBorrowingRequest_Click" HorizontalAlignment="Right" Style="{StaticResource BorderButtonRadi}" Content="Put in Request" Width="120" Height="32" Margin="0,0,15,0"/>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <ContentPresenter Margin="0,0,0,5"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                            </Grid>
+                        </Border>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -140,12 +203,57 @@
                                 <ColumnDefinition Width="170"></ColumnDefinition>
                                 <ColumnDefinition Width="150"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Content="Home"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Content="Profile"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Content="View stock"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Click="HomeButton_Click" Content="Home"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Click="ProfileButton_Click" Content="Profile"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Click="ViewStockButton_Click" Content="View stock"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request"></Button>
                         </Grid>
                     </Border>
+                    <Grid Height="925" VerticalAlignment="Bottom">
+                        <Grid Width="1370" Height="46" VerticalAlignment="Top" Margin="0,50,0,0">
+                            <Label Content="Your request" FontSize="26" FontWeight="Bold"></Label>
+                        </Grid>
+                        <Border BorderThickness="1" BorderBrush="Black" Background="#EEDCC9" Width="1370" Height="727" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid Height="700" Width="1340">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="200"/>
+                                </Grid.RowDefinitions>
+                                <ListView Name="ViewYourRequest" Background="Transparent" BorderThickness="0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel Width="1307" Focusable="False" Background="White" Height="61">
+                                                <Image Source="{Binding Image}"/>
+                                                <Label Content="{Binding Titel}" VerticalAlignment="Center"/>
+                                                <Label Content="{Binding TagsOrAuthor}" VerticalAlignment="Center"/>
+                                                <Button Name="RemoveFromBorrowingRequest" Click="RemoveFromBorrowingRequest_Click" HorizontalAlignment="Right" Style="{StaticResource BorderButtonRadi}" Content="Remove" Width="120" Height="32" Margin="0,0,15,0"/>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <ContentPresenter Margin="0,0,0,5"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                                <Button Name="PlaceRequest" Click="PlaceRequest_Click" Grid.Row="1" Style="{StaticResource BorderButtonRadi}" Width="283" Height="63" VerticalAlignment="Top" Background="#7f5539" Foreground="#ede0d4" Content="PLACE REQUEST" FontSize="24"></Button>
+                                <Border Visibility="Hidden" Name="RequestPlacedFeedback" Grid.Row="1" Background="White" Width="422" Height="87" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <Label Content="Your request has been placed." HorizontalAlignment="Center"/>
+                                        <Label Content="Unless notified, assume it's been accepted" HorizontalAlignment="Center"/>
+                                        <Label Content="Have fun!" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Profile" Visibility="Collapsed">
@@ -177,11 +285,11 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="495"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Welcome NAME" FontSize="24" FontWeight="Bold" Margin="15,50,0,0" Grid.Column="0"></Label>
-                        <Image Source="/Samurai-Warriors-5_2021_05-27-21_002-320x353.png" Opacity="0.5"></Image>
-                        <Image Source="/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" Grid.Column="2" Height="768" VerticalAlignment="Bottom" Opacity="0.5"></Image>
+                        <Label Name="PFWelcome"  Content="Welcome NAME" FontSize="24" FontWeight="Bold" Margin="15,50,0,0" Grid.Column="0"></Label>
+                        <Image Source="/Resources/Samurai-Warriors-5_2021_05-27-21_002-320x353.png" Opacity="0.5"></Image>
+                        <Image Source="/Resources/kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" Grid.Column="2" Height="768" VerticalAlignment="Bottom" Opacity="0.5"></Image>
                         <Label Width="150" Height="38" Content="Your info" FontSize="24" FontWeight="Bold" Margin="100,50,0,50" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"></Label>
-                        <Button Grid.Column="1" VerticalAlignment="Top" Margin="600,55,0,50" FontFamily="Algerian" Width="120" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Save" Cursor="Hand" Background="#BFFFFFFF" Foreground="Black" FontSize="16" BorderBrush="Black">
+                        <Button Name="SaveInfo" Click="SaveInfo_Click"  Grid.Column="1" VerticalAlignment="Top" Margin="600,55,0,50" Width="120" Height="32" Style="{StaticResource BorderButtonRadi}" Content="Save" Cursor="Hand" Background="#BFFFFFFF" Foreground="Black" FontSize="16" BorderBrush="Black">
                         </Button>
                         <Border Width="710" Height="306" VerticalAlignment="Top" CornerRadius="5" Margin="0,100,0,0" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1">
                             <Border.Effect>
@@ -205,26 +313,19 @@
                                     <TextBox  Name="ProfileName"  Text="Your name" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="NameLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
                                     </TextBox>
                                     <Label Content="Code:" Grid.Row="1"></Label>
-                                    <Label Content="gg420360" FontSize="14" Height="32" Width="180" BorderBrush="Black" Grid.Row="1" Grid.Column="1"></Label>
-                                    <Button x:Name="HideCode" Grid.Column="1" Grid.Row="1" Height="23" Width="23" HorizontalAlignment="Right" Click="HideCode_Click" >
-                                        <Button.Background>
-                                            <ImageBrush ImageSource="/Show.png"/>
-                                        </Button.Background>
-                                    </Button>
-                                    <Button x:Name="ShowCode" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Right" Visibility="Collapsed" Click="ShowCode_Click">
-                                        <Button.Background>
-                                            <ImageBrush ImageSource="/Hide.png"/>
-                                        </Button.Background>
+                                    <Label Name="ProfileCode" Content="********" FontSize="14" Height="32" Width="180" BorderBrush="Black" Grid.Row="1" Grid.Column="1"></Label>
+                                    <Button x:Name="HideShowCode" Grid.Column="1" Grid.Row="1" Height="23" Width="23" HorizontalAlignment="Right" Click="HideShowCode_Click" >
+                                        <Image Name="ShowImg" Source="/Resources/Hide.png"/>
                                     </Button>
                                     <Label Content="Nickname" Grid.Row="2"></Label>
                                     <TextBox Name="ProfileNickname" Text="Your nickname" Grid.Row="2" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
                                     </TextBox>
                                     <Label Content="Emergency contact" Grid.Row="3" ></Label>
-                                    <TextBox Text="Name" Grid.Row="3" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
-                                    <TextBox Text="Tlf" Grid.Row="3" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Name="ECName" Text="Name" Grid.Row="3" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Name="ECTlf"  Text="Tlf" Grid.Row="3" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
                                     <Label Content="Adress" Grid.Row="4" ></Label>
-                                    <TextBox Text="Adress" Grid.Row="4" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
-                                    <TextBox Text="City" Grid.Row="4" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Name="AdressAdress" Text="Adress" Grid.Row="4" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Name="AdressCity" Text="City" Grid.Row="4" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -233,19 +334,34 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Currently borrowed" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,410" Grid.Column="0"></Label>
-                            <Label Content="Created requests" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,410" Grid.Column="1"></Label>
+                            <Label Content="Currently Borrowed" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,410" Grid.Column="0"></Label>
+                            <Label Content="Created Requests" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,410" Grid.Column="1"></Label>
                             <Border Width="400" Height="372" VerticalAlignment="Bottom" Background="#ede0d4" Margin="0,0,0,25" BorderThickness="1" BorderBrush="Black" Grid.Column="0" CornerRadius="5">
-                                <ListView Width="360" Margin="0,10,0,10" Background="#7f5539" ItemsSource="{Binding}">
-                                      
+                               
+                            </Border>
+                            <Border Width="400" Height="372" VerticalAlignment="Bottom" Background="#ede0d4" Margin="0,0,0,25" BorderThickness="1" BorderBrush="Black" Grid.Column="1" CornerRadius="5">
+                                <ListView Name="CreatedRequest" Width="390" Height="362" Background="Transparent" BorderThickness="0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel Background="#7F5539" Width="360" Height="56">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Content="{Binding Titel}" FontSize="16" Foreground="#ede0d4" Opacity="0.87"></Label>
+                                                    <Label Grid.Row="1" Content="{Binding TagsOrAuthor}" FontSize="14" Foreground="#ede0d4" Opacity="0.54"></Label>
+                                                </Grid>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
                                 </ListView>
                             </Border>
-                            <Border Width="400" Height="372" VerticalAlignment="Bottom" Background="#ede0d4" Margin="0,0,0,25" BorderThickness="1" BorderBrush="Black" Grid.Column="1" CornerRadius="5"></Border>
                         </Grid>
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="ViewStock" Visibility="Collapsed">
+            <TabItem Header="AdminViewRequests" Visibility="Collapsed">
                 <Grid Background="#DDB892">
                     <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="top" Height="75"  Background="#683F25">
                         <Border.Effect>
@@ -265,12 +381,44 @@
                                 <ColumnDefinition Width="170"></ColumnDefinition>
                                 <ColumnDefinition Width="150"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Content="Home"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Content="Profile"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Content="View stock"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Click="HomeButton_Click" Content="Home"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Click="ProfileButton_Click" Content="Profile"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Click="ViewStockButton_Click" Content="View stock"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request"></Button>
                         </Grid>
                     </Border>
+                    <Grid Height="925" VerticalAlignment="Bottom">
+                        <Grid Width="1370" Height="46" VerticalAlignment="Top" Margin="0,50,0,0">
+                            <Label Content="Current Request" FontSize="26" FontWeight="Bold"></Label>
+                        </Grid>
+                        <Border BorderThickness="1" BorderBrush="Black" Background="#EEDCC9" Width="1370" Height="727" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid Height="700" Width="1340">
+                                <ListView Name="AdminRequest" Background="Transparent" BorderThickness="0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel Width="1307" Focusable="False" Background="White" Height="61">
+                                                <Image Source="{Binding Image}"/>
+                                                <Label Content="{Binding Titel}" VerticalAlignment="Center"/>
+                                                <Button HorizontalAlignment="Right" Style="{StaticResource BorderButtonRadi}" Content="Put in Request" Width="120" Height="32" Margin="0,0,15,0"/>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <ContentPresenter Margin="0,0,0,5"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

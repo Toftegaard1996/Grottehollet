@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Cave-Clipart-Transparent-Pictures.png" />
-    <None Remove="Exit.png" />
-    <None Remove="Hide.png" />
-    <None Remove="Indbox.png" />
-    <None Remove="kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" />
-    <None Remove="listview.png" />
-    <None Remove="Profile.png" />
-    <None Remove="Samurai-Warriors-5_2021_05-27-21_002-320x353.png" />
-    <None Remove="Show.png" />
+    <None Remove="Resources\book.png" />
+    <None Remove="Resources\Cave-Clipart-Transparent-Pictures.png" />
+    <None Remove="Resources\controller.png" />
+    <None Remove="Resources\Exit.png" />
+    <None Remove="Resources\Hide.png" />
+    <None Remove="Resources\Indbox.png" />
+    <None Remove="Resources\kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" />
+    <None Remove="Resources\listview.png" />
+    <None Remove="Resources\Profile.png" />
+    <None Remove="Resources\Samurai-Warriors-5_2021_05-27-21_002-320x353.png" />
+    <None Remove="Resources\Show.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,19 +25,36 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Cave-Clipart-Transparent-Pictures.png" />
-    <Resource Include="Exit.png" />
-    <Resource Include="Hide.png" />
-    <Resource Include="Indbox.png" />
-    <Resource Include="kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" />
-    <Resource Include="listview.png" />
-    <Resource Include="Profile.png" />
-    <Resource Include="Samurai-Warriors-5_2021_05-27-21_002-320x353.png" />
-    <Resource Include="Show.png" />
+    <Resource Include="Resources\book.png" />
+    <Resource Include="Resources\Cave-Clipart-Transparent-Pictures.png" />
+    <Resource Include="Resources\controller.png" />
+    <Resource Include="Resources\Exit.png" />
+    <Resource Include="Resources\Hide.png" />
+    <Resource Include="Resources\Indbox.png" />
+    <Resource Include="Resources\kisspng-old-school-runescape-wizard-wizard-png-file-5a742a3b907114.0245094915175624275916.png" />
+    <Resource Include="Resources\listview.png" />
+    <Resource Include="Resources\Profile.png" />
+    <Resource Include="Resources\Samurai-Warriors-5_2021_05-27-21_002-320x353.png" />
+    <Resource Include="Resources\Show.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{3259aa49-8aa1-44d3-9025-a0b520596a8c}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
