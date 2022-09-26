@@ -34,7 +34,13 @@ namespace Grottehollet.Class
 
             TagsOrAuthor = tagsorauthor;
             Titel = titel;
+            Member = member;
             Borrowing = borrowing;
         }
+        public override string ToString()
+        {
+            return $"{Type},{Titel},{TagsOrAuthor},{Member}";
+        }
+
     }
 }

@@ -96,7 +96,7 @@
                         <Button Style="{StaticResource BorderBigButtonRadi}" Name="MakeRequestButton" Click="MakeRequestButton_Click"  Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image Source="/Resources/listview.png" Height="220"></Image>
-                                <Label Content="Make request" HorizontalAlignment="Center" FontSize="24"></Label>
+                                <Label Name="MakeViewRequest" Content="Make request" HorizontalAlignment="Center" FontSize="24"></Label>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource BorderBigButtonRadi}" Name="ProfileButton" Click="ProfileButton_Click" Width="532" Height="413" Background="#ede0d4" BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10">
@@ -143,7 +143,7 @@
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Click="HomeButton_Click" Content="Home"></Button>
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Click="ProfileButton_Click"  Content="Profile"></Button>
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Click="ViewStockButton_Click"  Content="View stock"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request" Name="MakeOrView1"></Button>
                         </Grid>
                     </Border>
                     <Grid Height="925" VerticalAlignment="Bottom">
@@ -161,7 +161,7 @@
                                                 <Image Source="{Binding Image}"/>
                                                 <Label Content="{Binding Titel}" VerticalAlignment="Center"/>
                                                 <Label Content="{Binding Tags}" VerticalAlignment="Center"/>
-                                                <Button Name="MakeBorrowingRequest" Click="MakeBorrowingRequest_Click" HorizontalAlignment="Right" Style="{StaticResource BorderButtonRadi}" Content="Put in Request" Width="120" Height="32" Margin="0,0,15,0"/>
+                                                <Button x:Name="MakeBorrowingRequest" Click="MakeBorrowingRequest_Click" HorizontalAlignment="Right" Style="{StaticResource BorderButtonRadi}" Content="Put in Request" Width="120" Height="32" Margin="0,0,15,0"/>
                                             </DockPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -206,7 +206,7 @@
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Click="HomeButton_Click" Content="Home"></Button>
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Click="ProfileButton_Click" Content="Profile"></Button>
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Click="ViewStockButton_Click" Content="View stock"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request" Name="MakeOrView2"></Button>
                         </Grid>
                     </Border>
                     <Grid Height="925" VerticalAlignment="Bottom">
@@ -276,7 +276,7 @@
                             <Button Background="{x:Null}" Name="HomeButton"  Click="HomeButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Content="Home"></Button>
                             <Button Background="{x:Null}" Click="ProfileButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Content="Profile"></Button>
                             <Button Background="{x:Null}" Click="ViewStockButton_Click"  BorderThickness="0" Height="61" Width="150" Grid.Column="2" Content="View stock"></Button>
-                            <Button Background="{x:Null}" Click="MakeRequestButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request"></Button>
+                            <Button Background="{x:Null}" Click="MakeRequestButton_Click" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Content="Make Request" Name="MakeOrView3"></Button>
                         </Grid>
                     </Border>
                     <Grid VerticalAlignment="Bottom" Height="925">
@@ -308,24 +308,27 @@
                                         <RowDefinition Height="40"></RowDefinition>
                                         <RowDefinition Height="40"></RowDefinition>
                                         <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Label Content="Name:"></Label>
                                     <TextBox  Name="ProfileName"  Text="Your name" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="NameLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
                                     </TextBox>
                                     <Label Content="Code:" Grid.Row="1"></Label>
                                     <Label Name="ProfileCode" Content="********" FontSize="14" Height="32" Width="180" BorderBrush="Black" Grid.Row="1" Grid.Column="1"></Label>
-                                    <Button x:Name="HideShowCode" Grid.Column="1" Grid.Row="1" Height="23" Width="23" HorizontalAlignment="Right" Click="HideShowCode_Click" >
+                                    <Button x:Name="HideShowCode" Grid.Column="1" BorderThickness="0" Grid.Row="1" Height="23" Width="23" HorizontalAlignment="Right" Click="HideShowCode_Click" >
                                         <Image Name="ShowImg" Source="/Resources/Hide.png"/>
                                     </Button>
-                                    <Label Content="Nickname" Grid.Row="2"></Label>
-                                    <TextBox Name="ProfileNickname" Text="Your nickname" Grid.Row="2" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
+                                    <Label Content="Number:" Grid.Row="2"></Label>
+                                    <TextBox  Name="ProfileNumber" Grid.Row="2" Text="Your Number" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="NameLoginBox_GotFocus" Style="{StaticResource BorderRadi}"/>
+                                    <Label Content="Nickname" Grid.Row="3"></Label>
+                                    <TextBox Name="ProfileNickname" Text="Your nickname" Grid.Row="3" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}">
                                     </TextBox>
-                                    <Label Content="Emergency contact" Grid.Row="3" ></Label>
-                                    <TextBox Name="ECName" Text="Name" Grid.Row="3" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
-                                    <TextBox Name="ECTlf"  Text="Tlf" Grid.Row="3" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
-                                    <Label Content="Adress" Grid.Row="4" ></Label>
-                                    <TextBox Name="AdressAdress" Text="Adress" Grid.Row="4" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
-                                    <TextBox Name="AdressCity" Text="City" Grid.Row="4" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <Label Content="Emergency contact" Grid.Row="4" ></Label>
+                                    <TextBox Name="ECName" Text="Name" Grid.Row="4" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Name="ECTlf"  Text="Tlf" Grid.Row="4" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <Label Content="Adress" Grid.Row="5" ></Label>
+                                    <TextBox Name="AdressAdress" Text="Adress" Grid.Row="5" Height="32" Width="180" Grid.Column="1" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
+                                    <TextBox Name="AdressCity" Text="City" Grid.Row="5" Height="32" Width="180" Grid.Column="2" BorderBrush="Black" GotFocus="CodeLoginBox_GotFocus" Style="{StaticResource BorderRadi}"></TextBox>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -384,7 +387,7 @@
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="0" Click="HomeButton_Click" Content="Home"></Button>
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="1" Click="ProfileButton_Click" Content="Profile"></Button>
                             <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="2" Click="ViewStockButton_Click" Content="View stock"></Button>
-                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request"></Button>
+                            <Button Background="{x:Null}" BorderThickness="0" Height="61" Width="150" Grid.Column="3" Click="MakeRequestButton_Click" Content="Make Request" Name="MakeOrView4"></Button>
                         </Grid>
                     </Border>
                     <Grid Height="925" VerticalAlignment="Bottom">
@@ -393,28 +396,18 @@
                         </Grid>
                         <Border BorderThickness="1" BorderBrush="Black" Background="#EEDCC9" Width="1370" Height="727" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Grid Height="700" Width="1340">
-                                <ListView Name="AdminRequest" Background="Transparent" BorderThickness="0">
+                                <ListView Name="AdminRequest" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" Margin="0,15,0,0">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <DockPanel Width="1307" Focusable="False" Background="White" Height="61">
-                                                <Image Source="{Binding Image}"/>
-                                                <Label Content="{Binding Titel}" VerticalAlignment="Center"/>
-                                                <Button HorizontalAlignment="Right" Style="{StaticResource BorderButtonRadi}" Content="Put in Request" Width="120" Height="32" Margin="0,0,15,0"/>
-                                            </DockPanel>
+                                            <Grid Background="White" Height="123" Width="1307" >
+                                                <TextBlock Text="{Binding Titel}" FontSize="16" VerticalAlignment="Top" LineHeight="25" Margin="25,10,0,0" />
+                                                <TextBlock Text="{Binding Type}" FontSize="16" VerticalAlignment="Center" LineHeight="25" Margin="25,0,0,0"/>
+                                                <TextBlock Text="{Binding Member}" FontSize="16" VerticalAlignment="Bottom" LineHeight="25" Margin="25,0,0,10"/>
+                                                <Button Style="{StaticResource BorderButtonRadi}" Content="Reject" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="120" Height="32" Margin="0,0,25,0" Name="RejectRequestButton" Click="RejectRequestButton_Click"/>
+                                                <Button Style="{StaticResource BorderButtonRadi}" Content="Accept" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="120" Height="32" Margin="0,0,155,0" Name="AcceptRequestButton" Click="AcceptRequestButton_Click"/>
+                                            </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="{x:Type ListViewItem}">
-                                            <Setter Property="Background" Value="Transparent"/>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                        <ContentPresenter Margin="0,0,0,5"/>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
                                 </ListView>
                             </Grid>
                         </Border>

@@ -19,16 +19,18 @@ namespace Grottehollet.Class
         public string Name;
         public string Adress;
         public string City;
+        public string Number;
         public string EmergencyContact;
         public string Nickname;
         public string Code;
+        public string Admin;
 
         public void CreateMember(string name, string adress, string city)
         {
             Random rnd = new Random();
             StringBuilder stringBuilder = new StringBuilder();
             string pool = "abcdefghijklmnopqrstuvwxyz1234567890";
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 8; i++)
             {
                 var c = pool[rnd.Next(0, pool.Length)];
                 stringBuilder.Append(c);
@@ -36,8 +38,8 @@ namespace Grottehollet.Class
             Code = stringBuilder.ToString();
 
             DB.cnn.Open();
-            DB.cmd = new SqlCommand("SELECT * FROM Medlemmer WHERE Medlemskode=" + Code, DB.cnn);
-            DB.cmd.Parameters.AddWithValue("Medlemskode", stringBuilder.ToString());
+            DB.cmd = new SqlCommand("SELECT * FROM Medlemmer WHERE Medlemskode=@Medlemskode", DB.cnn);
+            DB.cmd.Parameters.AddWithValue("Medlemskode", Code);
             DB.reader = DB.cmd.ExecuteReader();
 
             if (DB.reader.Read())
@@ -59,15 +61,13 @@ namespace Grottehollet.Class
             DB.cnn.Close();
             DB.cnn.Open();
 
-            DB.cmd = new SqlCommand("CreateMedledmV1", DB.cnn);
+            DB.cmd = new SqlCommand("CreateMedlemV3", DB.cnn);
             DB.cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            DB.cmd.Parameters.AddWithValue("@Name", name);
-            DB.cmd.Parameters.AddWithValue("@Adress", adress);
+            DB.cmd.Parameters.AddWithValue("@Navn", name);
+            DB.cmd.Parameters.AddWithValue("@Adresse", adress);
             DB.cmd.Parameters.AddWithValue("@City", city);
-            DB.cmd.Parameters.AddWithValue("@Nødkontakt", null);
-            DB.cmd.Parameters.AddWithValue("Code", Code);
-            DB.cmd.Parameters.AddWithValue("@Kaldenavn", null);
+            DB.cmd.Parameters.AddWithValue("@Medlemskode", Code);
 
             DB.cmd.ExecuteNonQuery();
             DB.cnn.Close();
@@ -86,22 +86,25 @@ namespace Grottehollet.Class
                 Name = DB.reader["Navn"].ToString();
                 Adress = DB.reader["Adresse"].ToString();
                 City = DB.reader["City"].ToString();
+                Number = DB.reader["Tlf"].ToString();
                 EmergencyContact = DB.reader["Nødkontakt"].ToString();
                 Nickname = DB.reader["Kaldenavn"].ToString();
                 Code = membercode;
+                Admin = DB.reader["AdminRole"].ToString();
             }
         }
 
-        public void UpdateProfile(string membercode, string PFNickname, string PFemergencyName, string PFemergencyPhone, string PFAdress, string PFCity)
+        public void UpdateProfile(string membercode, string PFNickname, string PFNumber, string PFemergencyName, string PFemergencyPhone, string PFAdress, string PFCity)
         {
             if (PFAdress != "" && PFCity != "")
             {
                 DB.cnn.Open();
-                DB.cmd = new SqlCommand("UPDATE Medlemmer SET Kaldenavn = @Nickname, Adresse = @Adress, City = @city WHERE Medlemdskode=@Medlemskode", DB.cnn);
-                DB.cmd.Parameters.AddWithValue("Medlemskode", membercode);
-                DB.cmd.Parameters.AddWithValue("Nickname", PFNickname);
-                DB.cmd.Parameters.AddWithValue("Adress", PFAdress);
-                DB.cmd.Parameters.AddWithValue("City", PFCity);
+                DB.cmd = new SqlCommand("UPDATE Medlemmer SET Kaldenavn = @Nickname, Tlf = @Number, Adresse = @Adress, City = @city WHERE Medlemskode=@Medlemskode", DB.cnn);
+                DB.cmd.Parameters.AddWithValue("@Medlemskode", membercode);
+                DB.cmd.Parameters.AddWithValue("@Nickname", PFNickname);
+                DB.cmd.Parameters.AddWithValue("@Number", PFNumber);
+                DB.cmd.Parameters.AddWithValue("@Adress", PFAdress);
+                DB.cmd.Parameters.AddWithValue("@City", PFCity);
 
                 DB.cmd.ExecuteNonQuery();
                 DB.cnn.Close();
@@ -118,25 +121,79 @@ namespace Grottehollet.Class
 
             lock (Lockject)
             {
-                borrowRequests.Add(new BorrowRequest(splitted[0].ToString(), splitted[1].ToString(), splitted[2].ToString(), Code, false));
+                borrowRequests.Add(new BorrowRequest(splitted[0].ToString(), splitted[1].ToString(), splitted[2].ToString(), Name, false));
                 return borrowRequests;
             }
         }
 
+        public List<string> ConRejList = new List<string>();
         public void PlaceRequest(List<string> requestborrowing) 
         {
             foreach (var item in requestborrowing)
             {
+                string[] splitted = item.Split(',');
                 DB.cnn.Open();
-                DB.cmd = new SqlCommand("UPDATE Brætspil SET Udlånes=@udlånes WHERE Navn=@titel", DB.cnn);
-                DB.cmd.Parameters.AddWithValue("@titel", item.ToString());
-                DB.cmd.Parameters.AddWithValue("@udlånes", true);
+                DB.cmd = new SqlCommand("UPDATE Brætspil SET Udlånes=@Udlånes WHERE Navn=@Titel", DB.cnn);
+                DB.cmd.Parameters.AddWithValue("@Titel", splitted[1].ToString());
+                DB.cmd.Parameters.AddWithValue("@Udlånes", true);
                 DB.cmd.ExecuteNonQuery();
                 DB.cnn.Close();
 
             }
-            borrowRequests.Clear();
+            
         }
+        #region Admin
+        public ObservableCollection<BorrowRequest> ViewRequests() 
+        {
+            return borrowRequests;
+        }
+        public void ConfirmRequest(string titel) 
+        {
+            string[] splitted = titel.Split(',');
+            DB.cnn.Open();
+            if (splitted[0] == "Brætspil")
+            {
+                DB.cmd = new SqlCommand("GodkendUdlån_Brætspil", DB.cnn);
+                DB.cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                DB.cmd.Parameters.AddWithValue("@Title", splitted[1].ToString());
+            }
+            else if (splitted[0] == "Bog") 
+            {
+                DB.cmd = new SqlCommand("GodkendUdlån_Bog", DB.cnn);
+                DB.cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                DB.cmd.Parameters.AddWithValue("@Title", splitted[1].ToString());
+            }
+            DB.cmd.ExecuteNonQuery();
+            DB.cnn.Close();
+            DB.cnn.Open();
+            if (splitted[0] == "Brætspil")
+            {
+                DB.cmd = new SqlCommand("CreateBrætspilUdlån", DB.cnn);
+                DB.cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                DB.cmd.Parameters.AddWithValue("@Titel", splitted[1].ToString());
+                DB.cmd.Parameters.AddWithValue("@Navn", splitted[3].ToString());
+            }
+            //else if (splitted[0] == "Bog")
+            //{
+            //    DB.cmd = new SqlCommand("GodkendUdlån_Bog", DB.cnn);
+            //    DB.cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //    DB.cmd.Parameters.AddWithValue("@titel", splitted[1]);
+            //}
+            DB.cmd.ExecuteNonQuery();
+            DB.cnn.Close();
+        }
+
+        public void RejectRequest(string titel) 
+        {
+            string[] splitted = titel.Split(',');
+            DB.cnn.Open();
+            DB.cmd = new SqlCommand("UPDATE Brætspil SET Udlånes=@udlånes WHERE Navn=@titel", DB.cnn);
+            DB.cmd.Parameters.AddWithValue("@titel", splitted[1].ToString());
+            DB.cmd.Parameters.AddWithValue("@udlånes", false);
+            DB.cmd.ExecuteNonQuery();
+            DB.cnn.Close();
+        }
+        #endregion
 
         public void Logout() 
         {

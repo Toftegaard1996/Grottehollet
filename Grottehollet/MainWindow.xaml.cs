@@ -54,6 +54,14 @@ namespace Grottehollet
                 if (CodeLoginBox.Text == DB.reader["Medlemskode"].ToString() && NameLoginBox.Text == DB.reader["Navn"].ToString())
                 {
                     member.SeeProfile(CodeLoginBox.Text);
+                    if (member.Admin == "True")
+                    {
+                        MakeViewRequest.Content = "View requests";
+                        MakeOrView1.Content = "View Request";
+                        MakeOrView2.Content = "View Request";
+                        MakeOrView3.Content = "View Request";
+                        MakeOrView4.Content = "View Request";
+                    }
                     Grottehollet.SelectedIndex = 2;
                 }
             }
@@ -102,7 +110,17 @@ namespace Grottehollet
 
         private void MakeRequestButton_Click(object sender, RoutedEventArgs e)
         {
-            Grottehollet.SelectedIndex = 4;
+            if (member.Admin == "True")
+            {
+                Grottehollet.SelectedIndex = 6;
+                MakeViewRequest.Content = "View requests";
+                AdminRequest.ItemsSource = member.ViewRequests();
+            }
+            else 
+            {
+                Grottehollet.SelectedIndex = 4;
+            }
+
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
@@ -121,6 +139,10 @@ namespace Grottehollet
             if (member.City != "")
             {
                 AdressCity.Text = member.City;
+            }
+            if (member.Number != "")
+            {
+                ProfileNumber.Text = member.City;
             }
         }
 
@@ -159,14 +181,14 @@ namespace Grottehollet
         }
         private void SaveInfo_Click(object sender, RoutedEventArgs e)
         {
-            member.UpdateProfile(CodeLoginBox.Text, ProfileNickname.Text, ECName.Text, ECTlf.Text, AdressAdress.Text, AdressCity.Text);
+            member.UpdateProfile(CodeLoginBox.Text, ProfileNickname.Text, ProfileNumber.Text, ECName.Text, ECTlf.Text, AdressAdress.Text, AdressCity.Text);
         }
 
         private void MakeBorrowingRequest_Click(object sender, RoutedEventArgs e)
         {
             string Forborrowing = ((Button)sender).DataContext.ToString();
             ViewYourRequest.ItemsSource = member.RequestForBorrowing(Forborrowing);
-            
+            //Remove the button when it's pressed
 
         }
         private void RemoveFromBorrowingRequest_Click(object sender, RoutedEventArgs e)
@@ -186,11 +208,27 @@ namespace Grottehollet
                 }
                 member.PlaceRequest(RequestBorrowing);
                 RequestPlacedFeedback.Visibility = Visibility.Visible;
+                RequestBorrowing.Clear();
+                ViewYourRequest.ItemsSource = null;
 
             }
         }
 
         #endregion
+        private void AcceptRequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            BorrowRequest brrrr = ((Button)sender).DataContext as BorrowRequest;
+            string AcceptBorrowing = ((Button)sender).DataContext.ToString();
+            member.ConfirmRequest(AcceptBorrowing);
+            member.borrowRequests.Remove(brrrr);
+        }
 
+        private void RejectRequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            BorrowRequest brrrr = ((Button)sender).DataContext as BorrowRequest;
+            string RejectBorrowing = ((Button)sender).DataContext.ToString();
+            member.RejectRequest(RejectBorrowing);
+            member.borrowRequests.Remove(brrrr);
+        }
     }
 }

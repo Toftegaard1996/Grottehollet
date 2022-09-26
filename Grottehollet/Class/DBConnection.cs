@@ -51,7 +51,7 @@ namespace Grottehollet.Class
 
 
             List<BoardGame> DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør = new List<BoardGame>();
-
+            
             for (int i = 0; i < boardGames.Count -1; i++)
             {
                 for (int j = i+1; j < boardGames.Count; j++)
@@ -61,14 +61,14 @@ namespace Grottehollet.Class
                     {
                         GameGenre += boardGames[i].Tags;
                         GameGenre += boardGames[j].Tags;
-                        DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Add(new BoardGame("Brætspil", "Titel: " +  boardGames[i].Titel, " | Genre: " + GameGenre));
+                        DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Add(new BoardGame("Brætspil", boardGames[i].Titel, " | Genre: " + GameGenre));
                         GameGenre = "";
                     }
                     else
                     {
                         if (!DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Any(x=>x.Titel.Contains(boardGames[i].Titel)))
                         {
-                            DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Add(new BoardGame("Brætspil", "Titel: " + boardGames[i].Titel, " | Genre: " + boardGames[i].Tags));
+                            DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Add(new BoardGame("Brætspil", boardGames[i].Titel, " | Genre: " + boardGames[i].Tags));
                         }
                        
                     }
@@ -76,11 +76,27 @@ namespace Grottehollet.Class
             }
             if (!DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Any(x => x.Titel.Contains(boardGames[boardGames.Count-1].Titel)))
             {
-                DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Add(new BoardGame("Brætspil", "Titel: " + boardGames[boardGames.Count - 1].Titel, " | Genre: " + boardGames[boardGames.Count - 1].Tags));
+                DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Add(new BoardGame("Brætspil", boardGames[boardGames.Count - 1].Titel, " | Genre: " + boardGames[boardGames.Count - 1].Tags));
 
             }
 
             cnn.Close();
+            foreach (var item in DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.ToList())
+            {
+                cnn.Open();
+                cmd = new SqlCommand("SELECT * FROM Brætspil WHERE Navn=@Titel", cnn);
+                cmd.Parameters.AddWithValue("@Titel", item.Titel);
+                reader = cmd.ExecuteReader();
+                if (reader.Read() == true)
+                {
+                    if ((bool)reader["Udlånes"] == true)
+                    {
+                        DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør.Remove(item);
+                    }
+
+                }
+                cnn.Close();
+            }
             return DineNyeOgShinyListeDuVedTingDuLigeHarLAvetDerIKKEVarDerFør;
         }
 
