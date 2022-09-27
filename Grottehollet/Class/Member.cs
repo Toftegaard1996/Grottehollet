@@ -71,6 +71,8 @@ namespace Grottehollet.Class
 
             DB.cmd.ExecuteNonQuery();
             DB.cnn.Close();
+            SeeProfile(Code);
+            DB.cnn.Close();
         }
 
         public void SeeProfile(string membercode)

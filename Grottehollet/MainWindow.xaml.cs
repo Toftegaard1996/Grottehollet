@@ -142,7 +142,7 @@ namespace Grottehollet
             }
             if (member.Number != "")
             {
-                ProfileNumber.Text = member.City;
+                ProfileNumber.Text = member.Number;
             }
         }
 
@@ -157,6 +157,7 @@ namespace Grottehollet
             Grottehollet.SelectedIndex = 0;
             NameLoginBox.Text = "Your name";
             CodeLoginBox.Text = "Code";
+            //member.borrowRequests.Clear();
         }
 
         private void HideShowCode_Click(object sender, RoutedEventArgs e)
